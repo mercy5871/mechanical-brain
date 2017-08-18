@@ -198,7 +198,6 @@ def condition_mapping(n_days,name_vale,direction,dig_limit,rank_limit):
                 rank_ser = ['There is no data yet,please try again after 5:00 p.m.']
             return rank_ser
 
-
 @app.route('/', methods=["POST"])
 def requirement():
     line = request.json["query"]
