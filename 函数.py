@@ -62,6 +62,9 @@ df.to_hdf('/home/data/ushis/hdf_all.hdf','lable')
 df_hdf = pd.read_hdf('/home/data/ushis/df_hdf.hdf','lable')
 
 %time df_hdf = pd.read_hdf('/home/data/ushis/df_hdf.hdf','lable') '%time 可以查看该条语句所用的时间'
+t1 = time.time()
+t2 = time.time()
+print(round(t2-t1),'s')
 
 df.index.get_level_values('frute_name') 'df是双索引DataFrame,该项返回的是：apple apple pear pear banana banana'
 df.index.levels[0]                      'df是双索引DataFrame,该项返回的是：apple pear banana'
