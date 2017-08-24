@@ -104,6 +104,10 @@ df_grp = df.groupby(by=['col1', 'col2']) # by用于指定columns中的列名，�
 git fetch --all  
 git reset --hard origin/master 
 git pull
+#  删除远端文件夹
+git rm -r --cached dirname
+git commit -m 'say something'
+git push origin master
 print('F1:','%.2f%%'%F1) # 以百分数输出，并保留2位小数
 print('AUC:','%.4f'%AUC) # 以小数输出，并保留4位小数
 #%%
