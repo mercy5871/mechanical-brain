@@ -100,6 +100,10 @@ df_grp = df.groupby(by=['col1', 'col2']) # by用于指定columns中的列名，�
 "df_grp.get_group('key1')获取'key1'组中的具体内容"
 
 #%%
+#  强制git pull
+git fetch --all  
+git reset --hard origin/master 
+git pull
 print('F1:','%.2f%%'%F1) # 以百分数输出，并保留2位小数
 print('AUC:','%.4f'%AUC) # 以小数输出，并保留4位小数
 #%%
