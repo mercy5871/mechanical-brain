@@ -4,7 +4,7 @@ Created on Mon Jul 25 14:52:16 2016
 
 @author: Administrator
 """
-
+'pip install -e git+ssh://gitlab@git.q-phantom.com/QPhantom/core.git#egg=QPhantom-core' # 安装陆云飞设计的Metrics.py
 #%%
 import numpy as np
 import pandas as pd
