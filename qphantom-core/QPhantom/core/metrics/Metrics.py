@@ -539,6 +539,14 @@ class Metrics(object):
         plt.ylim([0, 1])
         plt.xticks(self.xticks01, fontsize=self.fontsize)
         plt.yticks(self.yticks01, fontsize=self.fontsize)
+        ax2 = plt.gca().twinx()
+        ax2.set_ylim(0, 10)
+        ax2.set_xlim(0, 1)
+        ax2.grid(False)
+        sns.distplot(predict_probability, bins=500, color='0.75', label="Density", hist=True, kde=False, norm_hist=True, ax=ax2)
+        ax2.set_ylabel("Density", fontsize=self.fontsize)
+        ax2.tick_params(axis="y", labelsize=self.fontsize)
+        ax2.legend(fontsize=self.fontsize) 
         if subplot is None:
             plt.tight_layout()
             self.show()
@@ -586,7 +594,6 @@ class Metrics(object):
         plt.yticks(self.yticks01, fontsize=self.fontsize)
         plt.legend(loc='upper left', fontsize=self.fontsize)
         ax2 = plt.gca().twinx()
-        bins = 200
         # ax2.set_ylim(0, 100)
         ax2.set_xlim(0, 1)
         ax2.grid(False)
