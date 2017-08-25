@@ -509,7 +509,7 @@ class Metrics(object):
             plt.tight_layout()
             self.show()
 
-    def plot_ks_curve(self, actural_label, predict_probability, evenly_xlim=True, threshosd_density=False, subplot=None):
+    def plot_ks_curve(self, actural_label, predict_probability, evenly_xlim=True, thresholds_density=False, subplot=None):
         '''
         plot KS curve show AUC
 
@@ -548,7 +548,7 @@ class Metrics(object):
         # ax2.set_ylim(0, 10)
         ax2.set_xlim(0, 1)
         ax2.grid(False)
-        if threshosd_density == True:
+        if thresholds_density == True:
             sns.distplot(thresholds, bins=500, color='0.75', label="Density", hist=True, kde=False, norm_hist=True, ax=ax2)
         else:    
             sns.distplot(predict_probability, bins=500, color='0.75', label="Density", hist=True, kde=False, norm_hist=True, ax=ax2)
@@ -559,7 +559,7 @@ class Metrics(object):
             plt.tight_layout()
             self.show()
 
-    def plot_precision_recall_fscore(self, actural_label, predict_probability, beta=1, plot_ks=True, plot_pr=True, threshosd_xlim=False, subplot=None):
+    def plot_precision_recall_fscore(self, actural_label, predict_probability, beta=1, plot_ks=True, plot_pr=True, thresholds_density=False, subplot=None):
         '''
         plot precision recall f-score
 
@@ -604,7 +604,7 @@ class Metrics(object):
         # ax2.set_ylim(0, 100)
         ax2.set_xlim(0, 1)
         ax2.grid(False)
-        if threshosd_xlim == True:
+        if thresholds_density == True:
             sns.distplot(rthresholds, bins=500, color='0.75', label="Density", hist=True, kde=False, norm_hist=True, ax=ax2)
         else:
             sns.distplot(predict_probability, bins=500, color='0.75', label="Density", hist=True, kde=False, norm_hist=True, ax=ax2)
