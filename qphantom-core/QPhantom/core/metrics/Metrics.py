@@ -540,7 +540,7 @@ class Metrics(object):
         plt.xticks(self.xticks01, fontsize=self.fontsize)
         plt.yticks(self.yticks01, fontsize=self.fontsize)
         ax2 = plt.gca().twinx()
-        ax2.set_ylim(0, 10)
+        # ax2.set_ylim(0, 10)
         ax2.set_xlim(0, 1)
         ax2.grid(False)
         sns.distplot(predict_probability, bins=500, color='0.75', label="Density", hist=True, kde=False, norm_hist=True, ax=ax2)
