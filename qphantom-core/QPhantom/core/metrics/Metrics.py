@@ -509,7 +509,7 @@ class Metrics(object):
             plt.tight_layout()
             self.show()
 
-    def plot_ks_curve(self, actural_label, predict_probability, subplot=None):
+    def plot_ks_curve(self, actural_label, predict_probability, evenly_xlim=True, threshosd_density=False, subplot=None):
         '''
         plot KS curve show AUC
 
@@ -528,9 +528,14 @@ class Metrics(object):
         fpr, tpr, thresholds = roc_curve(actural_label, predict_probability)
         ks = max(abs(tpr-fpr))
         lw=2
-        plt.plot(np.arange(0,1,1/len(tpr)), tpr, color='blue',lw=lw, label='TPR')
-        plt.plot(np.arange(0,1,1/len(fpr)), fpr, color='red' ,lw=lw, label='FPR')
-        plt.plot(np.arange(0,1,1/len(tpr-fpr)), tpr-fpr, color='green',lw=lw,  label='KS = %0.3f'%ks)
+        if evenly_xlim == True:
+            plt.plot(np.arange(0,1,1/len(tpr)), tpr, color='blue',lw=lw, label='TPR')
+            plt.plot(np.arange(0,1,1/len(fpr)), fpr, color='red' ,lw=lw, label='FPR')
+            plt.plot(np.arange(0,1,1/len(tpr-fpr)), tpr-fpr, color='green',lw=lw,  label='KS = %0.3f'%ks)
+        else:
+            plt.plot(1-thresholds, tpr, color='blue',lw=lw, label='TPR')
+            plt.plot(1-thresholds, fpr, color='red' ,lw=lw, label='FPR')
+            plt.plot(1-thresholds, tpr-fpr, color='green',lw=lw,  label='KS = %0.3f'%ks)  
         plt.title("KS curve", fontsize=self.title_size)
         plt.xlabel("Thresholds", fontsize=self.fontsize)
         plt.ylabel("Rate", fontsize=self.fontsize)
@@ -543,7 +548,10 @@ class Metrics(object):
         # ax2.set_ylim(0, 10)
         ax2.set_xlim(0, 1)
         ax2.grid(False)
-        sns.distplot(predict_probability, bins=500, color='0.75', label="Density", hist=True, kde=False, norm_hist=True, ax=ax2)
+        if threshosd_density == True:
+            sns.distplot(thresholds, bins=500, color='0.75', label="Density", hist=True, kde=False, norm_hist=True, ax=ax2)
+        else:    
+            sns.distplot(predict_probability, bins=500, color='0.75', label="Density", hist=True, kde=False, norm_hist=True, ax=ax2)
         ax2.set_ylabel("Density", fontsize=self.fontsize)
         ax2.tick_params(axis="y", labelsize=self.fontsize)
         ax2.legend(fontsize=self.fontsize) 
@@ -551,8 +559,7 @@ class Metrics(object):
             plt.tight_layout()
             self.show()
 
-
-    def plot_precision_recall_fscore(self, actural_label, predict_probability, beta=1, subplot=None, plot_ks=True, plot_pr=True):
+    def plot_precision_recall_fscore(self, actural_label, predict_probability, beta=1, plot_ks=True, plot_pr=True, threshosd_xlim=False, subplot=None):
         '''
         plot precision recall f-score
 
@@ -597,7 +604,10 @@ class Metrics(object):
         # ax2.set_ylim(0, 100)
         ax2.set_xlim(0, 1)
         ax2.grid(False)
-        sns.distplot(predict_probability, bins=500, color='0.75', label="Density", hist=True, kde=False, norm_hist=True, ax=ax2)
+        if threshosd_xlim == True:
+            sns.distplot(rthresholds, bins=500, color='0.75', label="Density", hist=True, kde=False, norm_hist=True, ax=ax2)
+        else:
+            sns.distplot(predict_probability, bins=500, color='0.75', label="Density", hist=True, kde=False, norm_hist=True, ax=ax2)
         ax2.set_ylabel("Density", fontsize=self.fontsize)
         ax2.tick_params(axis="y", labelsize=self.fontsize)
         # hist, bins = np.histogram(predict_probability, bins=200, density=True, range=(0, 1))
