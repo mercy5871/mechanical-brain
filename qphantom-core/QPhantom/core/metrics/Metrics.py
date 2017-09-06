@@ -526,12 +526,16 @@ class Metrics(object):
         else:
             plt.figure(figsize=self.size)
         fpr, tpr, thresholds = roc_curve(actural_label, predict_probability)
+        if len(tpr)%2 == 1:
+            x = np.delete(np.arange(0,1,1/len(tpr)),-1)
+        else:
+            x = np.arange(0,1,1/len(tpr))
         ks = max(abs(tpr-fpr))
         lw=2
         if evenly_xlim == True:
-            plt.plot(np.arange(0,1,1/len(tpr)), tpr, color='blue',lw=lw, label='TPR')
-            plt.plot(np.arange(0,1,1/len(fpr)), fpr, color='red' ,lw=lw, label='FPR')
-            plt.plot(np.arange(0,1,1/len(tpr-fpr)), tpr-fpr, color='green',lw=lw,  label='KS = %0.3f'%ks)
+            plt.plot(x, tpr, color='blue',lw=lw, label='TPR')
+            plt.plot(x, fpr, color='red' ,lw=lw, label='FPR')
+            plt.plot(x, tpr-fpr, color='green',lw=lw,  label='KS = %0.3f'%ks)
         else:
             plt.plot(1-thresholds, tpr, color='blue',lw=lw, label='TPR')
             plt.plot(1-thresholds, fpr, color='red' ,lw=lw, label='FPR')
