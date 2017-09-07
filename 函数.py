@@ -167,6 +167,11 @@ concat(objs, axis=0, join='outer', join_axes=None, ignore_index=False,keys=None,
 
 '''
 #%%
+'列表list取交集、并集、差集'
+c = list(set(a)&set(b)) # list交集
+c = list(set(a)|set(b)) # list并集
+c = list(set(a)^set(b)) # 返回一个新的 list 包含 s 和 t 中不重复的元素
+c = list(set(a)-set(b))# 返回一个新的 list 包含 a 中有但是 b 中没有的元素
 
 字典转json:
 data = {'name' : 'ACME','shares' : 100,'price' : 542.23}
