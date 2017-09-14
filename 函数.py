@@ -66,6 +66,10 @@ t1 = time.time()
 t2 = time.time()
 print(round(t2-t1),'s')
 
+with open('/home/mercy/PPmoney/talking/imei-tdid.txt') as f:   # open函数的用法
+    for line in f.readlines():
+        print(line)
+
 df.index.get_level_values('frute_name') 'df是双索引DataFrame,该项返回的是：apple apple pear pear banana banana'
 df.index.levels[0]                      'df是双索引DataFrame,该项返回的是：apple pear banana'
 df.groupby(df.index.get_level_values(level="trade_date") // 10000) '将df按年分组'
