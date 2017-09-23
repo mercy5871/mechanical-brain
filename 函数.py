@@ -50,6 +50,7 @@ type(arr) is ndarray
 np.count_nonzero(arr!=arr) # 利用np.nan!=np.nan的性质统计nan的数量
 #%%
 df.drop_duplicates('device_id',inplace=True) # 除去device_id列中重复的值
+flatten_columns = ['_'.join(col).strip() for col in df.columns.values] # multiple多重columns进行扁平化
 new = pd.get_dummies(df) # 特征是类别型的，将其变为亚变量
 phg = pd.concat([phg_low,phg_high]) # DataFrame连接
 df  = df.sample(frac=1,replace=False) #将df随机采样,frac是采样比例,1是100%;replace=False不放回采样
