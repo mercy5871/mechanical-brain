@@ -56,6 +56,9 @@ phg = pd.concat([phg_low,phg_high]) # DataFrame连接
 df  = df.sample(frac=1,replace=False) #将df随机采样,frac是采样比例,1是100%;replace=False不放回采样
 
 #%%
+writer = pd.ExcelWriter('/home/cjf/cjf_data/idcard.xlsx')
+df.to_excel(writer,index=False)                       # 存储Excel的方式
+
 pd.read_pickle('/home/mercy/data.pkl')
 pd.to_pickle('/home/mercy/data.pkl')
 
